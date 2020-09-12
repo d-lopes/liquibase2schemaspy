@@ -1,4 +1,4 @@
-#!/bin/bash
+  #!/bin/bash
 
 for i in "$@"
 do
@@ -20,7 +20,7 @@ case $i in
 esac
 done
 
-# default value
+# set default values
 if [[ -z $CHANGELOG_FILE ]]; then
     CHANGELOG_FILE="/data/input/db.changelog.xml"
 fi
@@ -29,8 +29,10 @@ if [[ -z $SCHEMA_NAME ]]; then
     SCHEMA_NAME="default"
 fi
 
+# copy everything into tmp dir
+CHANGELOG_DIR=$(dirname "$CHANGELOG_FILE") 
 mkdir -p /data/tmp/$SCHEMA_NAME
-cp /data/input/*.* /data/tmp/$SCHEMA_NAME
+cp "$CHANGELOG_DIR/*.*" /data/tmp/$SCHEMA_NAME
 
 # strip changelog from problematic syntax for H2 databases (see http://www.h2database.com/html/commands.html)
 #  (1) remove SQL single line comments
