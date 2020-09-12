@@ -19,7 +19,7 @@ $ docker run --rm \
 | -c        | The path to the changelog file (must be absolute and starts with /data/input/...)   The value "/data/input/db.changelog.xml" is set by default |
 | -s        | The name of the schema   The value "default" is set by default                                                                                 |
 
-This is how you call the converter with default parameter settings
+This is how you call the converter with custom parameter settings
 
 ```
 $ docker run --rm \
