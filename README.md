@@ -9,7 +9,7 @@ This is how you call the converter with default parameter settings
 $ docker run --rm \
       -v `pwd`/src/main/resources/db/changelog:/data/input \
       -v `pwd`/build/output/schemaspy:/data/output \
-    liquibase2schemaspy:latest
+    dl0pes/liquibase2schemaspy:latest
 ```
 
 ### Custom settings
@@ -25,5 +25,5 @@ This is how you call the converter with default parameter settings
 $ docker run --rm \
       -v `pwd`/src/main/resources/db/changelog:/data/input \
       -v `pwd`/build/output/schemaspy:/data/output \
-    liquibase2schemaspy:latest -s myCustomSchema -c /data/input/other_changelog-name.xml
+    dl0pes/liquibase2schemaspy:latest -s myCustomSchema -c /data/input/other_changelog-name.xml
 ```
