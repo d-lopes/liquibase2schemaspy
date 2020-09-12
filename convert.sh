@@ -28,7 +28,7 @@ fi
 
 CHANGELOG_DIR=$(dirname "$CHANGELOG_FILE")
 mkdir -p /data/tmp/$SCHEMA_NAME
-cp -R "$CHANGELOG_DIR" /data/tmp/$SCHEMA_NAME
+cp -a "$CHANGELOG_DIR/." /data/tmp/$SCHEMA_NAME
 
 # strip changelog from problematic syntax for H2 databases (see http://www.h2database.com/html/commands.html)
 #  (1) remove SQL single line comments
