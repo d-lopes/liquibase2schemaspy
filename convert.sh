@@ -1,28 +1,21 @@
   #!/bin/bash
 
-POSITIONAL=()
-while [[ $# -gt 0 ]]
+for i in "$@"
 do
-key="$1"
-
-case $key in
-    -c|--changeLogFile)
-    CHANGELOG_FILE="$2"
-    shift # past argument
-    shift # past value
+case $i in
+    -c=*|--changeLogFile=*)
+    CHANGELOG_FILE="${i#*=}"
+    shift # past argument=value
     ;;
-    -s|--schemaName)
-    SCHEMA_NAME="$2"
-    shift # past argument
-    shift # past value
+    -s=*|--schemaName=*)
+    SCHEMA_NAME="${i#*=}"
+    shift # past argument=value
     ;;
-    *)    # unknown option
-    POSITIONAL+=("$1") # save it in an array for later
-    shift # past argument
+    *)
+          # unknown option
     ;;
 esac
 done
-set -- "${POSITIONAL[@]}" # restore positional parameters
 
 # default value
 if [[ -z $CHANGELOG_FILE ]]; then
