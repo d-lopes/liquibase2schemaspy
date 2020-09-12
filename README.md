@@ -4,5 +4,8 @@ generate a [schemaSpy](http://schemaspy.org) documentation from a [liquibase](ht
 ## usage
 
 ```
-$ docker run --rm -v `pwd`/src/main/resources/db/changelog:/data/input -v `pwd`/build/output/schemaspy:/data/output liquibase2schemaspy:latest
+$ docker run --rm \
+      -v `pwd`/src/main/resources/db/changelog:/data/input \
+      -v `pwd`/build/output/schemaspy:/data/output \
+    liquibase2schemaspy:latest
 ```
