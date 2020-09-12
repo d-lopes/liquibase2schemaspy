@@ -1,14 +1,17 @@
   #!/bin/bash
 
-for i in "$@"
+POSITIONAL=()
+while [[ $# -gt 0 ]]
 do
-case $i in
-    -c=*|--changeLogFile=*)
+key="$1"
+
+case $key in
+    -c|--changeLogFile)
     CHANGELOG_FILE="$2"
     shift # past argument
     shift # past value
     ;;
-    -s=*|--schemaName=*)
+    -s|--schemaName)
     SCHEMA_NAME="$2"
     shift # past argument
     shift # past value
@@ -19,8 +22,9 @@ case $i in
     ;;
 esac
 done
+set -- "${POSITIONAL[@]}" # restore positional parameters
 
-# set default values
+# default value
 if [[ -z $CHANGELOG_FILE ]]; then
     CHANGELOG_FILE="/data/input/db.changelog.xml"
 fi
@@ -29,8 +33,7 @@ if [[ -z $SCHEMA_NAME ]]; then
     SCHEMA_NAME="default"
 fi
 
-# copy everything into tmp dir
-CHANGELOG_DIR=$(dirname "$CHANGELOG_FILE") 
+CHANGELOG_DIR=$(dirname "$CHANGELOG_FILE")
 mkdir -p /data/tmp/$SCHEMA_NAME
 cp "$CHANGELOG_DIR/*.*" /data/tmp/$SCHEMA_NAME
 
